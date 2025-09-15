@@ -35,98 +35,16 @@ const Hero: React.FC = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center hero-gradient relative overflow-hidden">
-      {/* Responsive Background Name Pattern */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          {/* Desktop pattern - full density (1024px+) */}
-          <div className="hidden lg:block">
-            {Array.from({ length: 320 }).map((_, i) => {
-              const cols = 20;
-              const rows = 16;
-              const col = i % cols;
-              const row = Math.floor(i / cols);
-              return (
-                <div
-                  key={i}
-                  className="absolute text-lg font-bold text-gray-700 select-none whitespace-nowrap transform -rotate-12"
-                  style={{
-                    left: `${(col * (100 / cols)) + (100 / cols / 2) - 3}%`,
-                    top: `${(row * (100 / rows)) + (100 / rows / 2) - 3}%`,
-                  }}
-                >
-                  DREW DEZ
-                </div>
-              );
-            })}
-          </div>
-          
-          {/* Large tablet/small desktop pattern (768px-1023px) */}
-          <div className="hidden md:block lg:hidden">
-            {Array.from({ length: 200 }).map((_, i) => {
-              const cols = 16;
-              const rows = 13;
-              const col = i % cols;
-              const row = Math.floor(i / cols);
-              return (
-                <div
-                  key={i}
-                  className="absolute text-base font-bold text-gray-700 select-none whitespace-nowrap transform -rotate-12"
-                  style={{
-                    left: `${(col * (100 / cols)) + (100 / cols / 2) - 3}%`,
-                    top: `${(row * (100 / rows)) + (100 / rows / 2) - 3}%`,
-                  }}
-                >
-                  DREW DEZ
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Small tablet pattern (640px-767px) */}
-          <div className="hidden sm:block md:hidden">
-            {Array.from({ length: 144 }).map((_, i) => {
-              const cols = 12;
-              const rows = 12;
-              const col = i % cols;
-              const row = Math.floor(i / cols);
-              return (
-                <div
-                  key={i}
-                  className="absolute text-sm font-bold text-gray-700 select-none whitespace-nowrap transform -rotate-12"
-                  style={{
-                    left: `${(col * (100 / cols)) + (100 / cols / 2) - 2}%`,
-                    top: `${(row * (100 / rows)) + (100 / rows / 2) - 2}%`,
-                  }}
-                >
-                  DREW DEZ
-                </div>
-              );
-            })}
-          </div>
-          
-          {/* Mobile pattern - improved density (0-639px) */}
-          <div className="block sm:hidden">
-            {Array.from({ length: 96 }).map((_, i) => {
-              const cols = 6;
-              const rows = 16;
-              const col = i % cols;
-              const row = Math.floor(i / cols);
-              return (
-                <div
-                  key={i}
-                  className="absolute text-xs font-bold text-gray-700 select-none whitespace-nowrap transform -rotate-12"
-                  style={{
-                    left: `${(col * (100 / cols)) + (100 / cols / 2)}%`,
-                    top: `${(row * (100 / rows)) + (100 / rows / 2)}%`,
-                  }}
-                >
-                  DREW DEZ
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      {/* Background Pattern Layer */}
+      <div 
+        className="absolute inset-0 pointer-events-none animate-drift"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='100' y='100' text-anchor='middle' dominant-baseline='middle' fill='%23374151' fill-opacity='0.12' font-family='system-ui, -apple-system, sans-serif' font-weight='700' font-size='26' transform='rotate(-12 100 100)'%3EDREW DEZ%3C/text%3E%3C/svg%3E")`,
+          backgroundSize: '160px 80px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: '0 0'
+        }}
+      />
       
       <div className="container-max section-padding py-20 relative z-10">
         <div className="max-w-4xl">

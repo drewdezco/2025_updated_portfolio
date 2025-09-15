@@ -83,3 +83,17 @@
     rgba(55, 65, 81, 0.1) 50%, 
     rgba(107, 114, 128, 0.05) 100%);
 }
+
+/* Infinite drifting animation for background pattern */
+@keyframes drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 160px 80px;
+  }
+}
+
+.animate-drift {
+  animation: drift 6s linear infinite;
+}
