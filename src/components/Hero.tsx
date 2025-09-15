@@ -60,11 +60,11 @@ const Hero: React.FC = () => {
             })}
           </div>
           
-          {/* Tablet pattern - medium density (640px-1023px) */}
-          <div className="hidden sm:block lg:hidden">
-            {Array.from({ length: 180 }).map((_, i) => {
-              const cols = 15;
-              const rows = 12;
+          {/* Large tablet/small desktop pattern (768px-1023px) */}
+          <div className="hidden md:block lg:hidden">
+            {Array.from({ length: 200 }).map((_, i) => {
+              const cols = 16;
+              const rows = 13;
               const col = i % cols;
               const row = Math.floor(i / cols);
               return (
@@ -81,12 +81,12 @@ const Hero: React.FC = () => {
               );
             })}
           </div>
-          
-          {/* Mobile pattern - improved density (0-639px) */}
-          <div className="block sm:hidden">
-            {Array.from({ length: 80 }).map((_, i) => {
-              const cols = 8;
-              const rows = 10;
+
+          {/* Small tablet pattern (640px-767px) */}
+          <div className="hidden sm:block md:hidden">
+            {Array.from({ length: 144 }).map((_, i) => {
+              const cols = 12;
+              const rows = 12;
               const col = i % cols;
               const row = Math.floor(i / cols);
               return (
@@ -96,6 +96,28 @@ const Hero: React.FC = () => {
                   style={{
                     left: `${(col * (100 / cols)) + (100 / cols / 2) - 2}%`,
                     top: `${(row * (100 / rows)) + (100 / rows / 2) - 2}%`,
+                  }}
+                >
+                  DREW DEZ
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Mobile pattern - improved density (0-639px) */}
+          <div className="block sm:hidden">
+            {Array.from({ length: 96 }).map((_, i) => {
+              const cols = 6;
+              const rows = 16;
+              const col = i % cols;
+              const row = Math.floor(i / cols);
+              return (
+                <div
+                  key={i}
+                  className="absolute text-xs font-bold text-gray-700 select-none whitespace-nowrap transform -rotate-12"
+                  style={{
+                    left: `${(col * (100 / cols)) + (100 / cols / 2)}%`,
+                    top: `${(row * (100 / rows)) + (100 / rows / 2)}%`,
                   }}
                 >
                   DREW DEZ
