@@ -38,19 +38,19 @@ const Navbar: React.FC = () => {
                 onClick={() => scrollToSection('hero')}
                 className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
               >
-                Home
+                Me
               </button>
               <button
                 onClick={() => scrollToSection('experience')}
                 className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
               >
-                Work
+                Experience
               </button>
               <button
                 onClick={() => scrollToSection('skills')}
                 className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
               >
-                About
+                Skills
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
@@ -80,19 +80,19 @@ const Navbar: React.FC = () => {
                 onClick={() => scrollToSection('hero')}
                 className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
               >
-                Home
+                Me
               </button>
               <button
                 onClick={() => scrollToSection('experience')}
                 className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
               >
-                Work
+                Experience
               </button>
               <button
                 onClick={() => scrollToSection('skills')}
                 className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
               >
-                About
+                Skills
               </button>
               <button
                 onClick={() => scrollToSection('contact')}

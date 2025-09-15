@@ -147,7 +147,7 @@ const Experience: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            My professional journey and educational background in software development
+            My professional journey and educational background in software engineering
           </p>
         </div>
 

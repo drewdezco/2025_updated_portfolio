@@ -108,7 +108,7 @@ const Skills: React.FC = () => {
       <div className="container-max section-padding">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Current technologies</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">Skills</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             I'm proficient in a range of modern technologies that empower me to build highly functional solutions. These are some of my main technologies.
           </p>
