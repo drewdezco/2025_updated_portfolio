@@ -1,27 +1,48 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react'
 import { Send } from 'lucide-react'
 
 interface ContactForm {
   name: string
   email: string
-  subject: string
   message: string
 }
 
 const Contact: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset
-  } = useForm<ContactForm>()
+  const [formData, setFormData] = useState<ContactForm>({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [status, setStatus] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = (data: ContactForm) => {
-    console.log('Form submitted:', data)
-    // Here you would typically send the form data to your backend
-    alert('Thanks for your message! I\'ll get back to you soon.')
-    reset()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setStatus('Sending...')
+    
+    try {
+      const response = await fetch('https://email-worker.drewdezco.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      
+      if (response.ok) {
+        setStatus('Thanks for reaching out! I\'ll get back to you soon.')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('There was an error. Please try again later.')
+      }
+    } catch (error) {
+      setStatus('There was an error. Please try again later.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -41,7 +62,7 @@ const Contact: React.FC = () => {
           <div className="p-8">
             <h3 className="text-xl font-semibold text-white mb-6">Send a Message</h3>
             
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
                   Name *
@@ -49,13 +70,13 @@ const Contact: React.FC = () => {
                 <input
                   type="text"
                   id="name"
-                  {...register('name', { required: 'Name is required' })}
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-900/30 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200"
                   placeholder="Your full name"
                 />
-                {errors.name && (
-                  <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
-                )}
               </div>
 
               <div>
@@ -65,35 +86,13 @@ const Contact: React.FC = () => {
                 <input
                   type="email"
                   id="email"
-                  {...register('email', { 
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: 'Please enter a valid email address'
-                    }
-                  })}
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-gray-900/30 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200"
                   placeholder="your.email@example.com"
                 />
-                {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="subject" className="block text-gray-300 font-medium mb-2">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  {...register('subject', { required: 'Subject is required' })}
-                  className="w-full px-4 py-3 bg-gray-900/30 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200"
-                  placeholder="What's this about?"
-                />
-                {errors.subject && (
-                  <p className="text-red-400 text-sm mt-1">{errors.subject.message}</p>
-                )}
               </div>
 
               <div>
@@ -102,24 +101,37 @@ const Contact: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={6}
-                  {...register('message', { required: 'Message is required' })}
                   className="w-full px-4 py-3 bg-gray-900/30 border border-gray-700/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 resize-none"
-                  placeholder="Hi Andrew! I'd like to discuss..."
+                  placeholder="Hi Drew! I'd like to discuss..."
                 />
-                {errors.message && (
-                  <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
-                )}
               </div>
 
               <button
                 type="submit"
-                className="w-full btn-primary justify-center"
+                disabled={isLoading}
+                className="w-full btn-primary justify-center disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                {isLoading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
+            
+            {status && (
+              <div className={`mt-6 p-4 rounded-lg text-center ${
+                status.includes('Thanks') 
+                  ? 'bg-green-900/30 border border-green-700/50 text-green-300' 
+                  : status.includes('error') 
+                  ? 'bg-red-900/30 border border-red-700/50 text-red-300'
+                  : 'bg-gray-900/30 border border-gray-700/50 text-gray-300'
+              }`}>
+                {status}
+              </div>
+            )}
           </div>
         </div>
       </div>
