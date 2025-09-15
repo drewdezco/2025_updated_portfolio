@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+// Force new deployment - TypeScript build fix
 interface ExperienceItem {
   id: string
   type: 'work' | 'education'

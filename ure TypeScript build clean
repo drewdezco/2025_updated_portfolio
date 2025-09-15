@@ -1,0 +1,3 @@
+[33m76de124[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix final TypeScript error - remove unused lucide-react imports from Experience component
+[33ma3519d2[m Fix TypeScript build errors - remove unused imports
+[33me3de635[m Add functional contact form with Resend integration
