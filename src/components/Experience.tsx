@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Calendar, ExternalLink } from 'lucide-react'
 
 interface ExperienceItem {
   id: string
