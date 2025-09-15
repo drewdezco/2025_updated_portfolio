@@ -1,5 +1,5 @@
 import React from 'react'
-import { Github, Linkedin, Mail, Download, MapPin } from 'lucide-react'
+import { Github, Linkedin, Mail, Download } from 'lucide-react'
 
 const Hero: React.FC = () => {
   const downloadResume = () => {

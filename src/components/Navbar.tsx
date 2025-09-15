@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, X, Download } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -24,12 +24,6 @@ const Navbar: React.FC = () => {
     }
   }
 
-  const downloadResume = () => {
-    const link = document.createElement('a')
-    link.href = '/andrew_hernandez_swe_resume.pdf'
-    link.download = 'Andrew_Hernandez_Resume.pdf'
-    link.click()
-  }
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${

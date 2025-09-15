@@ -1,5 +1,5 @@
 import React from 'react'
-import { ExternalLink, Github, Calendar } from 'lucide-react'
+import { ExternalLink, Calendar } from 'lucide-react'
 
 interface Project {
   id: string

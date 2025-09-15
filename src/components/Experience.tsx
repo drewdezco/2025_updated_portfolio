@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Calendar, MapPin, ExternalLink } from 'lucide-react'
+import { Calendar, ExternalLink } from 'lucide-react'
 
 interface ExperienceItem {
   id: string
