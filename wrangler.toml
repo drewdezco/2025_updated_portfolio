@@ -1,0 +1,12 @@
+name = "drewdez-portfolio"
+compatibility_date = "2024-09-01"
+
+[env.production]
+routes = [
+  { pattern = "drewdez.me", custom_domain = true },
+  { pattern = "*.drewdez.me", custom_domain = true }
+]
+
+# Pages configuration
+[env.production.vars]
+NODE_ENV = "production"
