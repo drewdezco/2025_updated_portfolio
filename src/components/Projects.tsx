@@ -1,5 +1,6 @@
 import React from 'react'
 import { ExternalLink, Calendar } from 'lucide-react'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 interface Project {
   id: string
@@ -16,7 +17,9 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
-  // Featured projects - 4 main projects in card layout
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
+
+  // Featured projects - 3 main projects in vertical stack layout
   const projects: Project[] = [
     {
       id: '1',
@@ -50,18 +53,6 @@ const Projects: React.FC = () => {
       featured: true,
       status: 'completed',
       completedDate: 'August 2024'
-    },
-    {
-      id: '4',
-      title: 'Portfolio Website',
-      description: 'Modern portfolio website built with React and TypeScript, deployed on Cloudflare Pages',
-      longDescription: 'This portfolio website! Built with React, TypeScript, and Tailwind CSS. Features a modern dark theme, responsive design, smooth animations, and optimized performance. Deployed on Cloudflare Pages with custom domain.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Cloudflare Pages'],
-      liveUrl: 'https://drewdez.me',
-      githubUrl: 'https://github.com/drewdezco/portfolio',
-      featured: true,
-      status: 'completed',
-      completedDate: 'December 2024'
     }
   ]
 
@@ -78,8 +69,15 @@ const Projects: React.FC = () => {
     }
   }
 
-  const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-    <div className="bg-gray-900/20 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 transition-all duration-500 hover:bg-gray-800/30 hover:border-gray-600/70">
+  const ProjectCard: React.FC<{ project: Project; index: number; isVisible: boolean }> = ({ project, index, isVisible }) => {
+    const delay = 600 + (index * 300) // 600ms, 900ms, 1200ms
+    return (
+    <div 
+      className={`bg-gray-900/20 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 hover:bg-gray-800/30 hover:border-gray-600/70 ${
+        isVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
+      }`}
+      style={isVisible ? { animationDelay: `${delay}ms` } : {}}
+    >
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
@@ -128,24 +126,44 @@ const Projects: React.FC = () => {
           ))}
         </div>
     </div>
-  )
+    )
+  }
 
   return (
-    <section id="projects" className="py-20 hero-gradient">
+    <section id="projects" ref={elementRef as React.RefObject<HTMLElement>} className="py-20 hero-gradient">
       <div className="container-max section-padding">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills in backend automation, system integration, and full-stack development
+          <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '300ms' }}>
+          Backend automation, system integration, and production-focused engineering with a focus on reliability
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        {/* Projects Grid - Vertical stack on all screen sizes */}
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} isVisible={isVisible} />
           ))}
+        </div>
+
+        {/* View All Projects Button */}
+        <div className={`flex justify-center mt-12 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`} style={{ transitionDelay: '1500ms' }}>
+          <a
+            href="https://github.com/drewdezco"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary inline-flex items-center"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            View All Projects
+          </a>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 interface Technology {
   name: string
@@ -8,6 +9,8 @@ interface Technology {
 }
 
 const Skills: React.FC = () => {
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
+
   // Technology stack based on your professional experience
   const technologies: Technology[] = [
     {
@@ -84,8 +87,15 @@ const Skills: React.FC = () => {
     }
   ]
 
-  const TechnologyCard: React.FC<{ technology: Technology }> = ({ technology }) => (
-    <div className="bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-800/50 transition-all duration-300 hover:bg-gray-800/30 hover:border-gray-600/70">
+  const TechnologyCard: React.FC<{ technology: Technology; index: number; isVisible: boolean }> = ({ technology, index, isVisible }) => {
+    const delay = 600 + (index * 100) // Stagger cards with 100ms increments
+    return (
+    <div 
+      className={`bg-gray-900/20 backdrop-blur-sm rounded-lg p-4 border border-gray-800/50 hover:bg-gray-800/30 hover:border-gray-600/70 ${
+        isVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
+      }`}
+      style={isVisible ? { animationDelay: `${delay}ms` } : {}}
+    >
       <div className="flex items-center space-x-3">
         {/* Technology Icon */}
         <div className={`w-10 h-10 bg-gradient-to-r ${technology.iconBg} rounded-lg flex items-center justify-center flex-shrink-0`}>
@@ -101,15 +111,20 @@ const Skills: React.FC = () => {
         </div>
       </div>
     </div>
-  )
+    )
+  }
 
   return (
-    <section id="skills" className="py-20 hero-gradient">
+    <section id="skills" ref={elementRef as React.RefObject<HTMLElement>} className="py-20 hero-gradient">
       <div className="container-max section-padding">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-white mb-4">Skills</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '300ms' }}>
             I'm proficient in a range of modern technologies that empower me to build highly functional solutions. These are some of my main technologies.
           </p>
         </div>
@@ -117,7 +132,7 @@ const Skills: React.FC = () => {
         {/* Technology Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {technologies.map((technology, index) => (
-            <TechnologyCard key={index} technology={technology} />
+            <TechnologyCard key={index} technology={technology} index={index} isVisible={isVisible} />
           ))}
         </div>
       </div>

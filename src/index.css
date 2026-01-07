@@ -76,6 +76,24 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Sequential fade-in animation matching Hero pattern */
+@keyframes fadeInUpSequential {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-sequential {
+  animation: fadeInUpSequential 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(2rem);
+}
+
 /* Gradient background for hero section */
 .hero-gradient {
   background: linear-gradient(135deg, 

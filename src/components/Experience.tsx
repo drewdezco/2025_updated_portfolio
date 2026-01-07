@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 // Force new deployment - TypeScript build fix
 interface ExperienceItem {
@@ -16,6 +17,7 @@ interface ExperienceItem {
 }
 
 const Experience: React.FC = () => {
+  const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
   const [activeTab, setActiveTab] = useState<'work' | 'education'>('work')
   
   // Your actual experience data
@@ -86,8 +88,15 @@ const Experience: React.FC = () => {
 
   const currentExperiences = experiences.filter(exp => exp.type === activeTab)
 
-  const TimelineItem: React.FC<{ experience: ExperienceItem; isLast: boolean }> = ({ experience, isLast }) => (
-    <div className="relative flex items-start mb-12">
+  const TimelineItem: React.FC<{ experience: ExperienceItem; isLast: boolean; index: number; isVisible: boolean }> = ({ experience, isLast, index, isVisible }) => {
+    const delay = 900 + (index * 300) // 900ms, 1200ms, 1500ms, etc.
+    return (
+    <div 
+      className={`relative flex items-start mb-12 ${
+        isVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
+      }`}
+      style={isVisible ? { animationDelay: `${delay}ms` } : {}}
+    >
       {/* Company Icon */}
       <div className="flex-shrink-0 mr-6">
         <div className={`w-16 h-16 bg-gradient-to-r ${experience.iconBg || 'from-gray-700 to-gray-800'} rounded-full flex items-center justify-center`}>
@@ -138,21 +147,28 @@ const Experience: React.FC = () => {
         )}
       </div>
     </div>
-  )
+    )
+  }
 
   return (
-    <section id="experience" className="py-20 hero-gradient">
+    <section id="experience" ref={elementRef as React.RefObject<HTMLElement>} className="py-20 hero-gradient">
       <div className="container-max section-padding">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '300ms' }}>
             My professional journey and educational background in software engineering
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-12">
+        <div className={`flex justify-center mb-12 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`} style={{ transitionDelay: '600ms' }}>
           <div className="flex space-x-8">
             <button
               onClick={() => setActiveTab('work')}
@@ -184,6 +200,8 @@ const Experience: React.FC = () => {
               key={experience.id} 
               experience={experience} 
               isLast={index === currentExperiences.length - 1}
+              index={index}
+              isVisible={isVisible}
             />
           ))}
         </div>
