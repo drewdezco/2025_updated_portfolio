@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import BackgroundPattern from './BackgroundPattern'
 
 // Force new deployment - TypeScript build fix
 interface ExperienceItem {
@@ -151,8 +152,9 @@ const Experience: React.FC = () => {
   }
 
   return (
-    <section id="experience" ref={elementRef as React.RefObject<HTMLElement>} className="py-20 hero-gradient">
-      <div className="container-max section-padding">
+    <section id="experience" ref={elementRef as React.RefObject<HTMLElement>} className="py-20 hero-gradient relative overflow-hidden">
+      <BackgroundPattern />
+      <div className="container-max section-padding relative z-10">
         {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'

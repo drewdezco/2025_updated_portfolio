@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Github, ExternalLink, Calendar, TrendingUp } from 'lucide-react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
+import BackgroundPattern from '../components/BackgroundPattern'
 
 interface Project {
   id: string
@@ -165,8 +166,9 @@ const AllProjects: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black-950" ref={elementRef as React.RefObject<HTMLDivElement>}>
-      <div className="container-max section-padding py-20">
+    <div className="min-h-screen bg-black-950 relative overflow-hidden" ref={elementRef as React.RefObject<HTMLDivElement>}>
+      <BackgroundPattern />
+      <div className="container-max section-padding py-20 relative z-10">
         {/* Back Button */}
         <div className={`transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
