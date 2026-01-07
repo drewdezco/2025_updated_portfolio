@@ -88,6 +88,12 @@ const Navbar: React.FC = () => {
                 Me
               </button>
               <button
+                onClick={() => scrollToSection('projects')}
+                className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
+              >
+                Projects
+              </button>
+              <button
                 onClick={() => scrollToSection('experience')}
                 className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
               >
