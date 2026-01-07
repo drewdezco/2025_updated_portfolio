@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Social Links - Last to fade in */}
-          <div className={`flex items-center justify-center space-x-6 transition-all duration-1000 ease-out ${
+          <div className={`flex items-center justify-center space-x-6 mb-8 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '1200ms' }}>
               <a
@@ -117,24 +117,26 @@ const Hero: React.FC = () => {
                 <Mail className="w-6 h-6" />
               </button>
             </div>
+
+          {/* Mobile scroll indicator - centered below social links */}
+          <div className={`flex justify-center md:hidden transition-all duration-1000 ease-out ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`} style={{ transitionDelay: '1500ms' }}>
+            <div className="animate-bounce">
+              <div className="w-5 h-8 border-2 border-gray-500 rounded-full flex justify-center">
+                <div className="w-1 h-2 bg-gray-500 rounded-full mt-1.5 animate-pulse"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Desktop scroll indicator */}
       <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block z-20 transition-all duration-1000 ease-out ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`} style={{ transitionDelay: '1500ms' }}>
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
-      
-      {/* Mobile scroll indicator - top right */}
-      <div className={`absolute top-20 right-6 animate-bounce md:hidden z-20 transition-all duration-1000 ease-out ${
-        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      }`} style={{ transitionDelay: '1500ms' }}>
-        <div className="w-5 h-8 border-2 border-gray-500 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-gray-500 rounded-full mt-1.5 animate-pulse"></div>
         </div>
       </div>
     </section>
