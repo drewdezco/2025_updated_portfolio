@@ -1,18 +1,18 @@
 import React from 'react'
-import { ExternalLink, Calendar } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ExternalLink, Calendar, Github, TrendingUp, ArrowRight } from 'lucide-react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 
 interface Project {
   id: string
   title: string
   description: string
-  longDescription: string
+  impact?: string
   technologies: string[]
   liveUrl?: string
   githubUrl?: string
   imageUrl?: string
   featured: boolean
-  status: 'completed' | 'in-progress' | 'planned'
   completedDate?: string
 }
 
@@ -24,71 +24,62 @@ const Projects: React.FC = () => {
     {
       id: '1',
       title: 'Network Monitoring System',
-      description: 'Enterprise-wide network monitoring solution across clustered RHEL environments with automated alerting',
-      longDescription: 'Built a comprehensive network monitoring solution for SAIC that provides real-time insights across distributed RHEL systems. Features automated alerting, performance metrics tracking, and integration with existing enterprise infrastructure.',
+      description: 'Enterprise-wide network monitoring solution providing real-time insights across distributed RHEL systems with automated alerting and performance metrics tracking.',
+      impact: 'Enabled proactive issue detection and reduced system downtime across clustered environments',
       technologies: ['Python', 'RHEL', 'Docker', 'APIs', 'Linux'],
       githubUrl: 'https://github.com/drewdezco/network-monitor',
       featured: true,
-      status: 'completed',
       completedDate: 'November 2024'
     },
     {
       id: '2',
       title: 'Databricks Analytics Pipeline',
-      description: 'AI-driven automation pipeline that reduced manual reporting labor by 55% for global stakeholders',
-      longDescription: 'Developed automated data processing and reporting system using Databricks and Python. Implemented machine learning models for data analysis and created standardized reporting workflows that significantly improved efficiency.',
+      description: 'AI-driven automation pipeline for data processing and reporting using machine learning models to standardize analysis workflows.',
+      impact: 'Reduced manual reporting labor by 55% for global stakeholders',
       technologies: ['Python', 'Databricks', 'Machine Learning', 'Data Analytics'],
       githubUrl: 'https://github.com/drewdezco/analytics-pipeline',
       featured: true,
-      status: 'completed',
       completedDate: 'October 2024'
     },
     {
       id: '3',
       title: 'Docker Development Environment',
-      description: 'Containerized RHEL development environment with Git-based version control and automated deployment',
-      longDescription: 'Created a robust development environment using Docker containers for RHEL servers. Implemented Git workflows, automated testing pipelines, and deployment processes that improved development team productivity.',
+      description: 'Containerized RHEL development environment with Git-based version control, automated testing pipelines, and streamlined deployment processes.',
+      impact: 'Improved development team productivity through standardized workflows',
       technologies: ['Docker', 'RHEL', 'Git', 'CI/CD', 'Bash'],
       githubUrl: 'https://github.com/drewdezco/docker-dev-env',
       featured: true,
-      status: 'completed',
       completedDate: 'August 2024'
     }
   ]
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-600'
-      case 'in-progress':
-        return 'bg-yellow-600'
-      case 'planned':
-        return 'bg-blue-600'
-      default:
-        return 'bg-gray-600'
-    }
-  }
 
   const ProjectCard: React.FC<{ project: Project; index: number; isVisible: boolean }> = ({ project, index, isVisible }) => {
     const delay = 600 + (index * 300) // 600ms, 900ms, 1200ms
     return (
     <div 
-      className={`bg-gray-900/20 backdrop-blur-sm rounded-lg p-6 border border-gray-800/50 hover:bg-gray-800/30 hover:border-gray-600/70 ${
+      className={`bg-gray-900/20 backdrop-blur-sm rounded-lg border border-gray-800/50 hover:bg-gray-800/30 hover:border-gray-600/70 overflow-hidden ${
         isVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
       }`}
       style={isVisible ? { animationDelay: `${delay}ms` } : {}}
     >
+        {/* Project Image */}
+        {project.imageUrl && (
+          <div className="w-full h-48 bg-gray-800/30 overflow-hidden">
+            <img 
+              src={project.imageUrl} 
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        
+        <div className="p-6">
+        {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h3 className="text-xl font-semibold text-white">
-                {project.title}
-              </h3>
-              <span className={`px-2 py-1 rounded-full text-xs text-white ${getStatusColor(project.status)}`}>
-                {project.status}
-              </span>
-            </div>
-            
+            <h3 className="text-2xl font-bold text-white mb-2">
+              {project.title}
+            </h3>
             {project.completedDate && (
               <div className="flex items-center text-gray-400 text-sm mb-3">
                 <Calendar className="w-4 h-4 mr-1" />
@@ -97,33 +88,62 @@ const Projects: React.FC = () => {
             )}
           </div>
 
-           <div className="flex space-x-2">
-             {project.liveUrl && (
-               <a
-                 href={project.liveUrl}
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="text-gray-400 hover:text-white transition-colors duration-500"
-               >
-                 <ExternalLink className="w-5 h-5" />
-               </a>
-             )}
-           </div>
+          {/* Action Links */}
+          <div className="flex space-x-2 ml-4">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-500"
+                aria-label="View on GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors duration-500"
+                aria-label="View live site"
+              >
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            )}
+          </div>
         </div>
 
-        <p className="text-gray-300 mb-4 leading-relaxed">
+        {/* Description */}
+        <p className="text-gray-300 mb-4 leading-relaxed text-base">
           {project.description}
         </p>
 
+        {/* Impact */}
+        {project.impact && (
+          <div className="mb-4 p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
+            <div className="flex items-start gap-2">
+              <TrendingUp className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-gray-200 leading-relaxed">
+                <span className="font-medium text-white">Impact: </span>
+                {project.impact}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Technologies */}
         <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech, index) => (
+          {project.technologies.map((tech, techIndex) => (
             <span
-              key={index}
+              key={techIndex}
               className="px-3 py-1 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700/50"
             >
               {tech}
             </span>
           ))}
+        </div>
         </div>
     </div>
     )
@@ -155,15 +175,13 @@ const Projects: React.FC = () => {
         <div className={`flex justify-center mt-12 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`} style={{ transitionDelay: '1500ms' }}>
-          <a
-            href="https://github.com/drewdezco"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/projects"
             className="btn-secondary inline-flex items-center"
           >
-            <ExternalLink className="w-4 h-4 mr-2" />
             View All Projects
-          </a>
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Link>
         </div>
       </div>
     </section>
