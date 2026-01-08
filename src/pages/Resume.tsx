@@ -30,7 +30,7 @@ const Resume: React.FC = () => {
         <div className="mb-8">
           <Link
             to="/"
-            className="inline-flex items-center text-gray-400 hover:text-white transition-colors duration-500 mb-6"
+            className="inline-flex items-center px-6 py-3 text-base font-semibold bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 border-2 border-gray-500/70 hover:border-gray-400 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-gray-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black-950 mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
@@ -60,6 +60,11 @@ const Resume: React.FC = () => {
           </button>
         </div>
 
+        {/* Mobile-friendly note */}
+        <div className="mb-4 text-sm text-gray-300 text-center md:hidden px-2">
+          <p>Tip: Use the buttons above to download or view in a new tab for the best experience on mobile.</p>
+        </div>
+
         {/* PDF Viewer */}
         <div className="bg-gray-900/30 backdrop-blur-sm rounded-lg border border-gray-800/50 p-4 md:p-8">
           <div className="aspect-[8.5/11] w-full min-h-[400px] md:min-h-0">
@@ -70,11 +75,6 @@ const Resume: React.FC = () => {
               allow="fullscreen"
             />
           </div>
-        </div>
-
-        {/* Mobile-friendly note */}
-        <div className="mt-4 text-sm text-gray-400 text-center md:hidden">
-          <p>Tip: Use the buttons above to download or view in a new tab for the best experience on mobile.</p>
         </div>
       </div>
     </div>
