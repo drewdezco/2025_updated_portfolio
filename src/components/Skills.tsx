@@ -16,12 +16,8 @@ const Skills: React.FC = () => {
       skills: ['Automation', 'System Integration', 'Data Pipelines', 'Production Engineering']
     },
     {
-      title: 'Primary Languages',
-      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL', 'Bash']
-    },
-    {
-      title: 'Testing & QA',
-      skills: ['Playwright', 'PyTest']
+      title: 'Primary Languages & Testing',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL', 'Bash', 'Playwright', 'PyTest']
     },
     {
       title: 'Data & Analytics',
