@@ -247,6 +247,19 @@ const AllProjects: React.FC = () => {
             <p className="text-gray-400 text-lg">More projects coming soon...</p>
           </div>
         )}
+
+        {/* Back to Home Button - Bottom */}
+        <div className={`flex justify-center mt-16 transition-all duration-1000 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`} style={{ transitionDelay: `${300 + (allProjects.length * 150)}ms` }}>
+          <Link 
+            to="/"
+            className="inline-flex items-center px-8 py-4 text-lg font-semibold bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 border-2 border-gray-500/70 hover:border-gray-400 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-gray-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black-950"
+          >
+            <ArrowLeft className="w-5 h-5 mr-3" />
+            Back to Home
+          </Link>
+        </div>
       </div>
     </div>
   )

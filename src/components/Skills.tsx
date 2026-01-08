@@ -13,31 +13,31 @@ const Skills: React.FC = () => {
   const skillCategories: SkillCategory[] = [
     {
       title: 'Core Focus',
-      skills: ['Automation', 'System Integration', 'Production Reliability', 'Data Pipelines']
+      skills: ['Automation', 'System Integration', 'Data Pipelines', 'Production Engineering']
     },
     {
       title: 'Primary Languages',
-      skills: ['Python', 'TypeScript', 'Java', 'SQL', 'Bash']
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'SQL', 'Bash']
     },
     {
-      title: 'Automation & Testing',
-      skills: ['Playwright', 'PyTest', 'CI-based Test Automation']
+      title: 'Testing & QA',
+      skills: ['Playwright', 'PyTest']
     },
     {
-      title: 'Data & Platforms',
-      skills: ['Databricks', 'Pandas', 'Analytics Pipelines']
+      title: 'Data & Analytics',
+      skills: ['Splunk', 'Databricks', 'Pandas', 'NumPy']
     },
     {
-      title: 'Infrastructure',
-      skills: ['Docker', 'Linux (RHEL)']
+      title: 'Infrastructure & DevOps',
+      skills: ['Docker', 'Linux (RHEL)', 'GitLab', 'GitLab CI/CD', 'Git']
     },
     {
-      title: 'APIs & Tooling',
-      skills: ['REST APIs', 'Git', 'GitLab CI/CD', 'Splunk']
+      title: 'APIs & Integration',
+      skills: ['REST APIs', 'Microsoft Graph API', 'Splunk REST API', 'GraphQL']
     },
     {
       title: 'Frontend (Supporting)',
-      skills: ['React', 'Tailwind CSS']
+      skills: ['React', 'Tailwind CSS', 'Bootstrap']
     }
   ]
 
