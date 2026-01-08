@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import BackgroundPattern from './BackgroundPattern'
 
@@ -20,6 +20,35 @@ interface ExperienceItem {
 const Experience: React.FC = () => {
   const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
   const [activeTab, setActiveTab] = useState<'work' | 'education'>('work')
+  const [itemsVisible, setItemsVisible] = useState(false)
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
+  const previousTab = useRef<'work' | 'education'>('work')
+
+  // Handle initial visibility
+  useEffect(() => {
+    if (isVisible && isInitialLoad) {
+      // First time section becomes visible - use longer delays
+      setTimeout(() => {
+        setItemsVisible(true)
+      }, 900)
+      setIsInitialLoad(false)
+    } else if (isVisible && !isInitialLoad) {
+      // Section already visible - show items immediately
+      setItemsVisible(true)
+    }
+  }, [isVisible, isInitialLoad])
+
+  // Handle tab changes - show items quickly
+  useEffect(() => {
+    if (activeTab !== previousTab.current && isVisible) {
+      setItemsVisible(false)
+      // Small delay for smooth transition, then show items quickly
+      setTimeout(() => {
+        setItemsVisible(true)
+      }, 50)
+      previousTab.current = activeTab
+    }
+  }, [activeTab, isVisible])
   
   // Your actual experience data
   const experiences: ExperienceItem[] = [
@@ -89,14 +118,15 @@ const Experience: React.FC = () => {
 
   const currentExperiences = experiences.filter(exp => exp.type === activeTab)
 
-  const TimelineItem: React.FC<{ experience: ExperienceItem; isLast: boolean; index: number; isVisible: boolean }> = ({ experience, isLast, index, isVisible }) => {
-    const delay = 900 + (index * 300) // 900ms, 1200ms, 1500ms, etc.
+  const TimelineItem: React.FC<{ experience: ExperienceItem; isLast: boolean; index: number; itemVisible: boolean; useFastAnimation: boolean }> = ({ experience, isLast, index, itemVisible, useFastAnimation }) => {
+    // Use longer delays for initial load, shorter for tab changes
+    const delay = useFastAnimation ? 100 + (index * 100) : 900 + (index * 300)
     return (
     <div 
       className={`relative flex items-start mb-12 ${
-        isVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
+        itemVisible ? 'animate-fade-in-sequential' : 'opacity-0 translate-y-8'
       }`}
-      style={isVisible ? { animationDelay: `${delay}ms` } : {}}
+      style={itemVisible ? { animationDelay: `${delay}ms` } : {}}
     >
       {/* Company Icon */}
       <div className="flex-shrink-0 mr-6">
@@ -203,7 +233,8 @@ const Experience: React.FC = () => {
               experience={experience} 
               isLast={index === currentExperiences.length - 1}
               index={index}
-              isVisible={isVisible}
+              itemVisible={itemsVisible}
+              useFastAnimation={!isInitialLoad}
             />
           ))}
         </div>

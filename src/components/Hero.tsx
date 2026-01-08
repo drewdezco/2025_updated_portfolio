@@ -41,33 +41,40 @@ const Hero: React.FC = () => {
       
       <div className="container-max section-padding py-20 relative z-10">
         <div className="max-w-4xl">
-          {/* Main Role Heading - First to fade in */}
-          <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-center transition-all duration-1000 ease-out ${
+          {/* Name - First to fade in */}
+          <div className={`text-center mb-4 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
+            <h2 className="text-2xl sm:text-3xl text-gray-300 font-medium">Andrew Hernandez</h2>
+          </div>
+
+          {/* Main Role Heading - Second to fade in */}
+          <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 text-center transition-all duration-1000 ease-out ${
+            isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`} style={{ transitionDelay: '300ms' }}>
             Software Engineer
           </h1>
           
-          {/* Location - Second to fade in */}
+          {/* Location - Third to fade in */}
           <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`} style={{ transitionDelay: '300ms' }}>
+          }`} style={{ transitionDelay: '600ms' }}>
             <span className="text-gray-400 text-sm uppercase tracking-wider">Based in Colorado</span>
           </div>
 
-          {/* Description - Third to fade in */}
+          {/* Description - Fourth to fade in */}
           <div className={`text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl leading-relaxed text-center mx-auto transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`} style={{ transitionDelay: '600ms' }}>
+          }`} style={{ transitionDelay: '900ms' }}>
             <p className="mb-4">
             Expertise in automation, distributed systems, and integration.
             </p>
           </div>
 
-          {/* CTA Buttons - Fourth to fade in */}
+          {/* CTA Buttons - Fifth to fade in */}
           <div className={`flex flex-col sm:flex-row gap-4 mb-12 justify-center transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`} style={{ transitionDelay: '900ms' }}>
+          }`} style={{ transitionDelay: '1200ms' }}>
             <button
               onClick={scrollToProjects}
               className="btn-secondary"
@@ -83,10 +90,10 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          {/* Social Links - Last to fade in */}
+          {/* Social Links - Sixth to fade in */}
           <div className={`flex items-center justify-center space-x-6 mb-8 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`} style={{ transitionDelay: '1200ms' }}>
+          }`} style={{ transitionDelay: '1500ms' }}>
               <a
                 href="https://www.linkedin.com/in/drewdezco/"
                 target="_blank"
@@ -114,7 +121,7 @@ const Hero: React.FC = () => {
           {/* Mobile scroll indicator - centered below social links */}
           <div className={`flex justify-center md:hidden transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`} style={{ transitionDelay: '1500ms' }}>
+          }`} style={{ transitionDelay: '1800ms' }}>
             <div className="animate-bounce">
               <div className="w-5 h-8 border-2 border-gray-500 rounded-full flex justify-center">
                 <div className="w-1 h-2 bg-gray-500 rounded-full mt-1.5 animate-pulse"></div>
@@ -127,7 +134,7 @@ const Hero: React.FC = () => {
       {/* Desktop scroll indicator */}
       <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block z-20 transition-all duration-1000 ease-out ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      }`} style={{ transitionDelay: '1500ms' }}>
+      }`} style={{ transitionDelay: '1800ms' }}>
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
         </div>
