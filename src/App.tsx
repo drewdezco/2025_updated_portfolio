@@ -6,6 +6,9 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import AllProjects from './pages/AllProjects'
+import Resume from './pages/Resume'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
             </main>
           } />
           <Route path="/projects" element={<AllProjects />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </div>
     </Router>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Github, Linkedin, Mail, Download } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import BackgroundPattern from './BackgroundPattern'
 
 const Hero: React.FC = () => {
@@ -12,20 +13,6 @@ const Hero: React.FC = () => {
     }, 100)
     return () => clearTimeout(timer)
   }, [])
-
-  const downloadResume = () => {
-    const link = document.createElement('a')
-    link.href = '/andrew_hernandez_swe_resume.pdf'
-    link.download = 'Andrew_Hernandez_Resume.pdf'
-    link.click()
-  }
-
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   const scrollToContact = () => {
     const element = document.getElementById('contact')
@@ -75,19 +62,18 @@ const Hero: React.FC = () => {
           <div className={`flex flex-col sm:flex-row gap-4 mb-12 justify-center transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '1200ms' }}>
-            <button
-              onClick={scrollToProjects}
+            <Link
+              to="/resume"
               className="btn-secondary"
             >
-              View My Work
-            </button>
-            <button
-              onClick={downloadResume}
-              className="btn-secondary"
-            >
-              <Download className="w-4 h-4 mr-2" />
               Resume
-            </button>
+            </Link>
+            <Link
+              to="/blog"
+              className="btn-secondary"
+            >
+              Blog
+            </Link>
           </div>
 
           {/* Social Links - Sixth to fade in */}
