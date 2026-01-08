@@ -73,7 +73,7 @@ const Skills: React.FC = () => {
           <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '300ms' }}>
-            My skills focus on building reliable, production-grade systems through automation, integration, and data-driven workflows.
+            My skills focus on building reliable, production-grade systems through automation, integration, and data-driven workflows
           </p>
         </div>
 

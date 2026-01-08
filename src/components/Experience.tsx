@@ -193,7 +193,7 @@ const Experience: React.FC = () => {
           <p className={`text-gray-400 text-lg max-w-2xl mx-auto transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '300ms' }}>
-            My professional journey and educational background in software engineering
+            My professional journey and educational background
           </p>
         </div>
 

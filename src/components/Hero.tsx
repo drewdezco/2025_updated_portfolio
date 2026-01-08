@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '900ms' }}>
             <p className="mb-4">
-            Expertise in automation, distributed systems, and integration.
+            Expertise in automation, distributed systems, integration, and testability across the software lifecycle
             </p>
           </div>
 

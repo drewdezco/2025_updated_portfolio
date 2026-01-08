@@ -2,15 +2,7 @@ import React, { useLayoutEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 import BackgroundPattern from '../components/BackgroundPattern'
-
-interface BlogPost {
-  id: string
-  title: string
-  content: string
-  date: string
-  readTime: string
-  category?: string
-}
+import { blogPosts } from '../data/blogPosts'
 
 const BlogPost: React.FC = () => {
   const { id } = useParams<{ id: string }>()
@@ -19,20 +11,6 @@ const BlogPost: React.FC = () => {
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [])
-
-  // Blog posts data - you can move this to a separate file or API later
-  const blogPosts: BlogPost[] = [
-    // Add your blog posts here
-    // Example:
-    // {
-    //   id: '1',
-    //   title: 'Getting Started with Automation',
-    //   content: 'Full blog post content here...',
-    //   date: '2025-01-15',
-    //   readTime: '5 min read',
-    //   category: 'Engineering'
-    // },
-  ]
 
   const post = blogPosts.find(p => p.id === id)
 

@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import BackgroundPattern from '../components/BackgroundPattern'
-
-interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  category?: string
-}
+import { blogPosts } from '../data/blogPosts'
 
 const Blog: React.FC = () => {
   // Scroll to top instantly when component mounts
@@ -20,20 +12,6 @@ const Blog: React.FC = () => {
   }, [])
 
   const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
-
-  // Blog posts - you can expand this with actual content later
-  const blogPosts: BlogPost[] = [
-    // Add your blog posts here
-    // Example:
-    // {
-    //   id: '1',
-    //   title: 'Getting Started with Automation',
-    //   excerpt: 'Learn how to build reliable automation systems that scale with your infrastructure needs...',
-    //   date: '2025-01-15',
-    //   readTime: '5 min read',
-    //   category: 'Engineering'
-    // },
-  ]
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -48,7 +26,7 @@ const Blog: React.FC = () => {
         <div className="mb-12">
           <Link
             to="/"
-            className="inline-flex items-center text-gray-400 hover:text-white transition-colors duration-500 mb-6"
+            className="inline-flex items-center px-6 py-3 text-base font-semibold bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 border-2 border-gray-500/70 hover:border-gray-400 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-gray-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black-950 mb-6"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Home
@@ -58,7 +36,7 @@ const Blog: React.FC = () => {
           }`}>
             <h1 className="text-4xl font-bold text-white mb-4">Blog</h1>
             <p className="text-gray-400 text-lg max-w-2xl">
-              Thoughts on software engineering, automation, and building production-grade systems.
+             Thoughts on software engineering, automation, and building reliable, production-grade systems.
             </p>
           </div>
         </div>
