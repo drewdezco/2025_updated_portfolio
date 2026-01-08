@@ -60,11 +60,11 @@ const Experience: React.FC = () => {
       location: 'Remote',
       period: 'Sep 2023 - Present',
       description: [
-        'Gathered requirements and translated user needs into a consistent, enterprise-wide network monitoring solution across clustered RHEL environments',
+        'Engineered automated integration pipeline for cyber security tooling using Python and REST APIs in Splunk environments, reducing operational costs by $35K/month',
         'Built backend automation and integrations with Python and APIs, enabling consistent data flow and communication across distributed systems',
-        'Implemented AI-driven automation pipelines in Databricks using Python, reducing manual reporting labor by 55% and standardizing analysis for global stakeholders'
+        'Developed and executed unit and QA tests in dev environment, then managed production deployment with post-launch maintenance and performance tuning to ensure system stability and scalability'
       ],
-      technologies: ['Python', 'APIs', 'RHEL', 'Databricks', 'Docker', 'Linux'],
+      technologies: ['Python', 'REST APIs', 'Splunk', 'Databricks', 'Docker', 'Linux', 'QA Testing'],
       icon: 'SAIC',
       iconBg: 'from-blue-600 to-blue-700'
     },
