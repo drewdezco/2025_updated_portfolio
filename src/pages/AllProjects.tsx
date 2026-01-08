@@ -34,6 +34,7 @@ const AllProjects: React.FC = () => {
       description: 'Engineered automated integration and deployment pipeline for a cyber security tool in a clustered Splunk environment. Replaced manual processes with Python-based automation, REST API integrations, and infrastructure orchestration.',
       impact: 'Reduced operational costs by $35K/month through automation and eliminated manual workflow dependencies',
       technologies: ['Python', 'Splunk', 'Automation', 'Infrastructure', 'REST APIs'],
+      imageUrl: '/project_1.jpg',
       featured: true
     },
     {
@@ -42,6 +43,7 @@ const AllProjects: React.FC = () => {
       description: 'Architected and developed a full-stack data quality validation system. Built modular Python backend API with React/TypeScript frontend, enabling column-level and dataset-level validation workflows through a web interface.',
       impact: 'Delivered reusable validation framework reducing data quality review time and improving dataset reliability',
       technologies: ['Python', 'React', 'Vite', 'REST APIs', 'TypeScript'],
+      imageUrl: '/project_2.jpg',
       featured: true
     },
     {
@@ -50,6 +52,7 @@ const AllProjects: React.FC = () => {
       description: 'Designed and implemented comprehensive Playwright test automation framework covering UI, API, and end-to-end workflows. Validated authentication flows, backend services, and frontend state management across multiple integration points.',
       impact: 'Established automated test coverage ensuring system reliability and reducing regression risk',
       technologies: ['Playwright', 'Python', 'Test Automation', 'CI/CD', 'API Testing'],
+      imageUrl: '/project_3.jpg',
       featured: true
     },
     {
@@ -57,6 +60,7 @@ const AllProjects: React.FC = () => {
       title: 'Data Quality AI Analysis',
       description: 'Built data pipeline with AI-driven analysis capabilities to evaluate datasets and identify cyber security risks. Automated manual review processes through machine learning integration and batch processing workflows.',
       technologies: ['Python', 'AI/ML', 'Data Pipelines', 'Automation', 'Data Analysis'],
+      imageUrl: '/project_4.jpg',
       featured: false
     },
     {
@@ -64,6 +68,7 @@ const AllProjects: React.FC = () => {
       title: 'Data Pipeline Creation (SharePoint ↔ Splunk)',
       description: 'Architected bidirectional data pipeline between SharePoint and Splunk using REST APIs. Implemented automated ingestion, synchronization, and data governance workflows with error handling and monitoring.',
       technologies: ['Python', 'Splunk', 'Microsoft Graph API', 'REST APIs', 'Data Pipelines'],
+      imageUrl: '/project_4.jpg',
       featured: false
     },
     {
@@ -71,6 +76,7 @@ const AllProjects: React.FC = () => {
       title: 'Splunk Custom Command Development',
       description: 'Extended Splunk search functionality by developing custom SPL commands in Python. Enabled analysts to deploy new workflows and transformations without modifying underlying data sources or infrastructure.',
       technologies: ['Python', 'Splunk', 'SPL', 'Custom Development', 'Automation'],
+      imageUrl: '/project_4.jpg',
       featured: false
     },
     {
@@ -78,6 +84,7 @@ const AllProjects: React.FC = () => {
       title: 'Splunk Dashboard Development',
       description: 'Engineered interactive Splunk dashboards with advanced user interactions and real-time data visualization. Integrated backend services via REST API for dynamic data retrieval and user-specific filtering.',
       technologies: ['Splunk', 'JavaScript', 'REST APIs', 'Data Visualization', 'Dashboard Design'],
+      imageUrl: '/project_4.jpg',
       featured: false
     },
     {
@@ -85,6 +92,7 @@ const AllProjects: React.FC = () => {
       title: 'Splunk JavaScript Automation',
       description: 'Implemented custom JavaScript automation within Splunk dashboards to enhance interactivity and user workflows. Developed reusable components for enterprise reporting views with state management.',
       technologies: ['JavaScript', 'Splunk', 'Automation', 'Dashboard Development', 'UX Enhancement'],
+      imageUrl: '/project_4.jpg',
       featured: false
     },
     {
@@ -94,6 +102,7 @@ const AllProjects: React.FC = () => {
       technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Cloudflare'],
       githubUrl: 'https://github.com/drewdezco/portfolio',
       liveUrl: 'https://drewdez.me',
+      imageUrl: '/project_9.jpg',
       featured: false
     }
   ]

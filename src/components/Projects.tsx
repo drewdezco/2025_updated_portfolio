@@ -28,6 +28,7 @@ const Projects: React.FC = () => {
       description: 'Engineered automated integration and deployment pipeline for a cyber security tool in a clustered Splunk environment. Replaced manual processes with Python-based automation, REST API integrations, and infrastructure orchestration.',
       impact: 'Reduced operational costs by $35K/month through automation and eliminated manual workflow dependencies',
       technologies: ['Python', 'Splunk', 'Automation', 'Infrastructure', 'REST APIs'],
+      imageUrl: '/project_1.jpg',
       featured: true
     },
     {
@@ -36,6 +37,7 @@ const Projects: React.FC = () => {
       description: 'Architected and developed a full-stack data quality validation system. Built modular Python backend API with React/TypeScript frontend, enabling column-level and dataset-level validation workflows through a web interface.',
       impact: 'Delivered reusable validation framework reducing data quality review time and improving dataset reliability',
       technologies: ['Python', 'React', 'Vite', 'REST APIs', 'TypeScript'],
+      imageUrl: '/project_2.jpg',
       featured: true
     },
     {
@@ -44,6 +46,7 @@ const Projects: React.FC = () => {
       description: 'Designed and implemented comprehensive Playwright test automation framework covering UI, API, and end-to-end workflows. Validated authentication flows, backend services, and frontend state management across multiple integration points.',
       impact: 'Established automated test coverage ensuring system reliability and reducing regression risk',
       technologies: ['Playwright', 'Python', 'Test Automation', 'CI/CD', 'API Testing'],
+      imageUrl: '/project_3.jpg',
       featured: true
     }
   ]

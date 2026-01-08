@@ -56,11 +56,11 @@ const Hero: React.FC = () => {
           </h1>
           
           {/* Location - Third to fade in */}
-          <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
+          {/* <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ transitionDelay: '600ms' }}>
             <span className="text-gray-400 text-sm uppercase tracking-wider">Based in Colorado</span>
-          </div>
+          </div> */}
 
           {/* Description - Fourth to fade in */}
           <div className={`text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl leading-relaxed text-center mx-auto transition-all duration-1000 ease-out ${
