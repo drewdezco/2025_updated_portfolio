@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
@@ -8,12 +8,14 @@ const Navbar: React.FC = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const isProjectsPage = location.pathname === '/projects'
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight
       const scrollPosition = window.scrollY
-      setIsScrolled(scrollPosition > heroHeight / 10)
+      setIsScrolled(scrollPosition > heroHeight / 3)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -47,15 +49,41 @@ const Navbar: React.FC = () => {
     }
   }, [location])
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        mobileMenuButtonRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !mobileMenuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
+
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="container-max section-padding">
         <div className="flex items-center h-16">
           {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex w-full justify-center">
-            <div className="flex items-center space-x-8 border border-gray-600/50 text-white font-medium rounded-lg hover:border-gray-500/70 hover:bg-gray-800/30 transition-colors duration-500 ease-in-out px-6 py-2">
+            <div className={`flex items-center space-x-8 border border-gray-600/50 text-white font-medium rounded-lg hover:border-gray-500/70 transition-all duration-500 ease-in-out px-6 py-2 ${
+              isScrolled 
+                ? 'bg-black-950/80 backdrop-blur-md' 
+                : 'bg-transparent hover:bg-gray-800/30'
+            }`}>
               <button
                 onClick={() => scrollToSection('hero')}
                 className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
@@ -92,8 +120,13 @@ const Navbar: React.FC = () => {
           {/* Mobile menu button */}
           <div className="md:hidden ml-auto">
             <button
+              ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-400 hover:text-white transition-colors duration-500"
+              className={`text-gray-400 hover:text-white transition-all duration-500 border border-gray-600/50 rounded-lg p-2 ${
+                isScrolled 
+                  ? 'bg-black-950/80 backdrop-blur-md hover:border-gray-500/70' 
+                  : 'bg-transparent hover:bg-gray-800/30'
+              }`}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -102,7 +135,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <div className="md:hidden" ref={mobileMenuRef}>
             <div className="px-2 pt-2 pb-3 space-y-1 bg-black-900/95 backdrop-blur-sm border border-gray-600/50 hover:border-gray-500/70 transition-colors duration-500 ease-in-out rounded-lg mt-4">
               <button
                 onClick={() => scrollToSection('hero')}
