@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useLocation, useNavigate, Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const Navbar: React.FC = () => {
@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const isProjectsPage = location.pathname === '/projects'
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -22,8 +23,8 @@ const Navbar: React.FC = () => {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    // If not on home page, navigate to home first, then scroll
-    if (location.pathname !== '/') {
+    if (isProjectsPage) {
+      // If on projects page, navigate to home first, then scroll
       navigate('/', { state: { scrollTo: sectionId } })
     } else {
       const element = document.getElementById(sectionId)
@@ -113,20 +114,6 @@ const Navbar: React.FC = () => {
               >
                 Contact
               </button>
-              <Link
-                to="/resume"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
-              >
-                Resume
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-300 hover:text-white transition-colors duration-500 text-sm font-medium"
-              >
-                Blog
-              </Link>
             </div>
           </div>
 
@@ -180,20 +167,6 @@ const Navbar: React.FC = () => {
               >
                 Contact
               </button>
-              <Link
-                to="/resume"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
-              >
-                Resume
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-3 text-gray-300 hover:text-white transition-colors duration-500 w-full text-left font-medium"
-              >
-                Blog
-              </Link>
             </div>
           </div>
         )}
