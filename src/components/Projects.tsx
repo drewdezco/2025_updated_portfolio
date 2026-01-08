@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, Calendar, Github, TrendingUp, ArrowRight } from 'lucide-react'
+import { ExternalLink, Github, TrendingUp, ArrowRight } from 'lucide-react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import BackgroundPattern from './BackgroundPattern'
 
@@ -24,33 +24,27 @@ const Projects: React.FC = () => {
   const projects: Project[] = [
     {
       id: '1',
-      title: 'Network Monitoring System',
-      description: 'Enterprise-wide network monitoring solution providing real-time insights across distributed RHEL systems with automated alerting and performance metrics tracking.',
-      impact: 'Enabled proactive issue detection and reduced system downtime across clustered environments',
-      technologies: ['Python', 'RHEL', 'Docker', 'APIs', 'Linux'],
-      githubUrl: 'https://github.com/drewdezco/network-monitor',
-      featured: true,
-      completedDate: 'November 2024'
+      title: 'Cyber Security Integration',
+      description: 'Engineered automated integration and deployment pipeline for a cyber security tool in a clustered Splunk environment. Replaced manual processes with Python-based automation, REST API integrations, and infrastructure orchestration.',
+      impact: 'Reduced operational costs by $35K/month through automation and eliminated manual workflow dependencies',
+      technologies: ['Python', 'Splunk', 'Automation', 'Infrastructure', 'REST APIs'],
+      featured: true
     },
     {
       id: '2',
-      title: 'Databricks Analytics Pipeline',
-      description: 'AI-driven automation pipeline for data processing and reporting using machine learning models to standardize analysis workflows.',
-      impact: 'Reduced manual reporting labor by 55% for global stakeholders',
-      technologies: ['Python', 'Databricks', 'Machine Learning', 'Data Analytics'],
-      githubUrl: 'https://github.com/drewdezco/analytics-pipeline',
-      featured: true,
-      completedDate: 'October 2024'
+      title: 'Data Quality Toolkit',
+      description: 'Architected and developed a full-stack data quality validation system. Built modular Python backend API with React/TypeScript frontend, enabling column-level and dataset-level validation workflows through a web interface.',
+      impact: 'Delivered reusable validation framework reducing data quality review time and improving dataset reliability',
+      technologies: ['Python', 'React', 'Vite', 'REST APIs', 'TypeScript'],
+      featured: true
     },
     {
       id: '3',
-      title: 'Docker Development Environment',
-      description: 'Containerized RHEL development environment with Git-based version control, automated testing pipelines, and streamlined deployment processes.',
-      impact: 'Improved development team productivity through standardized workflows',
-      technologies: ['Docker', 'RHEL', 'Git', 'CI/CD', 'Bash'],
-      githubUrl: 'https://github.com/drewdezco/docker-dev-env',
-      featured: true,
-      completedDate: 'August 2024'
+      title: 'Playwright – System Validation Testing',
+      description: 'Designed and implemented comprehensive Playwright test automation framework covering UI, API, and end-to-end workflows. Validated authentication flows, backend services, and frontend state management across multiple integration points.',
+      impact: 'Established automated test coverage ensuring system reliability and reducing regression risk',
+      technologies: ['Playwright', 'Python', 'Test Automation', 'CI/CD', 'API Testing'],
+      featured: true
     }
   ]
 
@@ -81,12 +75,6 @@ const Projects: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-2">
               {project.title}
             </h3>
-            {project.completedDate && (
-              <div className="flex items-center text-gray-400 text-sm mb-3">
-                <Calendar className="w-4 h-4 mr-1" />
-                {project.completedDate}
-              </div>
-            )}
           </div>
 
           {/* Action Links */}
@@ -174,15 +162,15 @@ const Projects: React.FC = () => {
         </div>
 
         {/* View All Projects Button */}
-        <div className={`flex justify-center mt-12 transition-all duration-1000 ease-out ${
+        <div className={`flex justify-center mt-16 transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`} style={{ transitionDelay: '1500ms' }}>
           <Link
             to="/projects"
-            className="btn-secondary inline-flex items-center"
+            className="inline-flex items-center px-8 py-4 text-lg font-semibold bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 border-2 border-gray-500/70 hover:border-gray-400 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-gray-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black-950"
           >
             View All Projects
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <ArrowRight className="w-5 h-5 ml-3" />
           </Link>
         </div>
       </div>

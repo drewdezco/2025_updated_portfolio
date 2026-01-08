@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isProjectsPage = location.pathname === '/projects'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +21,31 @@ const Navbar: React.FC = () => {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsMobileMenuOpen(false)
+    if (isProjectsPage) {
+      // If on projects page, navigate to home first, then scroll
+      navigate('/', { state: { scrollTo: sectionId } })
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
     }
+    setIsMobileMenuOpen(false)
   }
+
+  // Handle scroll after navigation from projects page
+  useEffect(() => {
+    if (location.state?.scrollTo && location.pathname === '/') {
+      setTimeout(() => {
+        const element = document.getElementById(location.state.scrollTo)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+        // Clear the state to prevent re-scrolling on re-renders
+        window.history.replaceState({}, document.title)
+      }, 100)
+    }
+  }, [location])
 
 
   return (

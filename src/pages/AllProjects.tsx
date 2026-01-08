@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Github, ExternalLink, Calendar, TrendingUp } from 'lucide-react'
+import { ArrowLeft, Github, ExternalLink, TrendingUp } from 'lucide-react'
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import BackgroundPattern from '../components/BackgroundPattern'
 
@@ -26,39 +26,76 @@ const AllProjects: React.FC = () => {
 
   const { elementRef, isVisible } = useIntersectionObserver({ threshold: 0.1 })
 
-  // All projects - you can expand this list with more projects
+  // All projects
   const allProjects: Project[] = [
     {
       id: '1',
-      title: 'Network Monitoring System',
-      description: 'Enterprise-wide network monitoring solution providing real-time insights across distributed RHEL systems with automated alerting and performance metrics tracking.',
-      impact: 'Enabled proactive issue detection and reduced system downtime across clustered environments',
-      technologies: ['Python', 'RHEL', 'Docker', 'APIs', 'Linux'],
-      githubUrl: 'https://github.com/drewdezco/network-monitor',
-      featured: true,
-      completedDate: 'November 2024'
+      title: 'Cyber Security Integration',
+      description: 'Engineered automated integration and deployment pipeline for a cyber security tool in a clustered Splunk environment. Replaced manual processes with Python-based automation, REST API integrations, and infrastructure orchestration.',
+      impact: 'Reduced operational costs by $35K/month through automation and eliminated manual workflow dependencies',
+      technologies: ['Python', 'Splunk', 'Automation', 'Infrastructure', 'REST APIs'],
+      featured: true
     },
     {
       id: '2',
-      title: 'Databricks Analytics Pipeline',
-      description: 'AI-driven automation pipeline for data processing and reporting using machine learning models to standardize analysis workflows.',
-      impact: 'Reduced manual reporting labor by 55% for global stakeholders',
-      technologies: ['Python', 'Databricks', 'Machine Learning', 'Data Analytics'],
-      githubUrl: 'https://github.com/drewdezco/analytics-pipeline',
-      featured: true,
-      completedDate: 'October 2024'
+      title: 'Data Quality Toolkit',
+      description: 'Architected and developed a full-stack data quality validation system. Built modular Python backend API with React/TypeScript frontend, enabling column-level and dataset-level validation workflows through a web interface.',
+      impact: 'Delivered reusable validation framework reducing data quality review time and improving dataset reliability',
+      technologies: ['Python', 'React', 'Vite', 'REST APIs', 'TypeScript'],
+      featured: true
     },
     {
       id: '3',
-      title: 'Docker Development Environment',
-      description: 'Containerized RHEL development environment with Git-based version control, automated testing pipelines, and streamlined deployment processes.',
-      impact: 'Improved development team productivity through standardized workflows',
-      technologies: ['Docker', 'RHEL', 'Git', 'CI/CD', 'Bash'],
-      githubUrl: 'https://github.com/drewdezco/docker-dev-env',
-      featured: true,
-      completedDate: 'August 2024'
+      title: 'Playwright – System Validation Testing',
+      description: 'Designed and implemented comprehensive Playwright test automation framework covering UI, API, and end-to-end workflows. Validated authentication flows, backend services, and frontend state management across multiple integration points.',
+      impact: 'Established automated test coverage ensuring system reliability and reducing regression risk',
+      technologies: ['Playwright', 'Python', 'Test Automation', 'CI/CD', 'API Testing'],
+      featured: true
+    },
+    {
+      id: '4',
+      title: 'Data Quality AI Analysis',
+      description: 'Built data pipeline with AI-driven analysis capabilities to evaluate datasets and identify cyber security risks. Automated manual review processes through machine learning integration and batch processing workflows.',
+      technologies: ['Python', 'AI/ML', 'Data Pipelines', 'Automation', 'Data Analysis'],
+      featured: false
+    },
+    {
+      id: '5',
+      title: 'Data Pipeline Creation (SharePoint ↔ Splunk)',
+      description: 'Architected bidirectional data pipeline between SharePoint and Splunk using REST APIs. Implemented automated ingestion, synchronization, and data governance workflows with error handling and monitoring.',
+      technologies: ['Python', 'Splunk', 'Microsoft Graph API', 'REST APIs', 'Data Pipelines'],
+      featured: false
+    },
+    {
+      id: '6',
+      title: 'Splunk Custom Command Development',
+      description: 'Extended Splunk search functionality by developing custom SPL commands in Python. Enabled analysts to deploy new workflows and transformations without modifying underlying data sources or infrastructure.',
+      technologies: ['Python', 'Splunk', 'SPL', 'Custom Development', 'Automation'],
+      featured: false
+    },
+    {
+      id: '7',
+      title: 'Splunk Dashboard Development',
+      description: 'Engineered interactive Splunk dashboards with advanced user interactions and real-time data visualization. Integrated backend services via REST API for dynamic data retrieval and user-specific filtering.',
+      technologies: ['Splunk', 'JavaScript', 'REST APIs', 'Data Visualization', 'Dashboard Design'],
+      featured: false
+    },
+    {
+      id: '8',
+      title: 'Splunk JavaScript Automation',
+      description: 'Implemented custom JavaScript automation within Splunk dashboards to enhance interactivity and user workflows. Developed reusable components for enterprise reporting views with state management.',
+      technologies: ['JavaScript', 'Splunk', 'Automation', 'Dashboard Development', 'UX Enhancement'],
+      featured: false
+    },
+    {
+      id: '9',
+      title: 'Portfolio Website',
+      description: 'Built responsive portfolio website using React, TypeScript, and Tailwind CSS. Implemented smooth animations, intersection observer patterns, and optimized performance. Deployed via Cloudflare Pages with Git-based CI/CD.',
+      technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Cloudflare'],
+      githubUrl: 'https://github.com/drewdezco/portfolio',
+      liveUrl: 'https://drewdez.me',
+      featured: false
     }
-    // Add more projects here as needed
   ]
 
   const ProjectCard: React.FC<{ project: Project; index: number; isVisible: boolean }> = ({ project, index, isVisible }) => {
@@ -96,12 +133,6 @@ const AllProjects: React.FC = () => {
               <h3 className="text-2xl font-bold text-white mb-2">
                 {project.title}
               </h3>
-              {project.completedDate && (
-                <div className="flex items-center text-gray-400 text-sm mb-3">
-                  <Calendar className="w-4 h-4 mr-1" />
-                  {project.completedDate}
-                </div>
-              )}
             </div>
 
             {/* Action Links */}
@@ -170,14 +201,14 @@ const AllProjects: React.FC = () => {
       <BackgroundPattern />
       <div className="container-max section-padding py-20 relative z-10">
         {/* Back Button */}
-        <div className={`transition-all duration-1000 ease-out ${
+        <div className={`transition-all duration-1000 ease-out mb-12 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <Link 
             to="/"
-            className="inline-flex items-center text-gray-400 hover:text-white transition-colors duration-500 mb-8"
+            className="inline-flex items-center px-8 py-4 text-lg font-semibold bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg hover:from-gray-600 hover:to-gray-700 border-2 border-gray-500/70 hover:border-gray-400 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-gray-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-black-950"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-5 h-5 mr-3" />
             Back to Home
           </Link>
         </div>
