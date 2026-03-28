@@ -53,12 +53,34 @@ const Experience: React.FC = () => {
   // Your actual experience data
   const experiences: ExperienceItem[] = [
     {
+      id: 'spectrum-se2',
+      type: 'work',
+      company: 'Charter Communications (Spectrum)',
+      position: 'Systems Engineer II',
+      location: 'Remote',
+      period: 'Mar 19, 2026 - Present',
+      description: [
+        'Build and maintain backend automation in Java around device activation, validating behavior through smoke and regression suites that gate changes before wider rollout',
+        'Run full end-to-end tests across realistic activation and service paths to confirm devices and key platform capabilities work together and that critical services stay uninterrupted for users',
+        'Partner with engineering teams to harden coverage, interpret failures, and stop regressions before they impact subscribers'
+      ],
+      technologies: [
+        'Java',
+        'Smoke & regression testing',
+        'E2E testing',
+        'Backend automation',
+        'Device activation',
+      ],
+      icon: 'CHTR',
+      iconBg: 'from-indigo-600 to-violet-700'
+    },
+    {
       id: '1',
       type: 'work',
       company: 'SAIC',
       position: 'Software Engineer',
       location: 'Remote',
-      period: 'Sep 2023 - Present',
+      period: 'Sep 2023 - Mar 19, 2026',
       description: [
         'Engineered automated integration pipeline for cyber security tooling using Python and REST APIs in Splunk environments, reducing operational costs by $35K/month',
         'Built backend automation and integrations with Python and APIs, enabling consistent data flow and communication across distributed systems',
